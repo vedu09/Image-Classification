@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Image Captioning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .btn {
+            margin-top: 15px;
+            padding: 12px 20px;
+            border: none;
+            background: #00b4d8;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s ease-in-out, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #0077b6;
+            transform: scale(1.05);
+        }
+
+        .animated-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #005f73;
+            animation: fadeInBounce 2s ease-in-out;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInBounce {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .caption-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px dashed #00b4d8;
+            border-radius: 8px;
+            background: rgba(0, 180, 216, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        .caption-box:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .caption-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #005f73;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption-text {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 15px;
+            background: #005f73;
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 2px solid #00b4d8;
+        }
+
+        .footer a {
+            color: #00b4d8;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #0077b6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animated-title">🚀 AI-Powered Image Classification</h1>
+        <p class="subtitle">Upload an image, and let our witty AI classify the image that might just blow your mind!</p>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" class="file-input" required>
+            <button type="submit" class="btn">Classify Image!</button>
+        </form>
+        {% if image_url %}
+            <div class="output">
+                <img src="{{ image_url }}" alt="Uploaded Image" class="output-image">
+                <div class="caption-box">
+                    <p class="caption-title">📜 Generated Caption:</p>
+                    <p class="caption-text">{{ caption }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 Image Classification | Made By <a href="https://github.com/vedu09"></a></p>
+    </footer>
+</body>
+</html>
